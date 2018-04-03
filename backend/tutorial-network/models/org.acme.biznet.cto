@@ -1,0 +1,61 @@
+namespace org.acme.biznet
+
+asset CustomerDocument identified by documentId {
+    o String documentId
+    o String description
+    o Validity validity
+    o Boolean approved optional
+    o String documentData optional
+    --> Operator validatedBy optional
+    --> Agent authorizedBy optional
+}
+
+enum Validity {
+  o Original
+  o Certified
+  o SimpleCopy
+}
+
+transaction Certify {
+    --> CustomerDocument file
+    --> Agent authorizedBy
+}
+
+participant Agent identified by agentId {
+    o String agentId
+    o String firstName
+    o String lastName
+    o String client
+}
+
+participant Operator identified by operatorId {
+    o String operatorId
+    o String firstName
+    o String lastName
+    o String client
+}
+
+transaction Validate {
+    --> CustomerDocument file
+    --> Operator validatedBy
+    o Boolean approved
+}
+
+transaction UploadFile {
+    o String documentId
+    o String description
+    o Validity validity
+    o String documentData
+    --> Agent authorizedBy optional
+}
+
+event FileNotification {
+    --> CustomerDocument file
+}
+
+transaction RemoveInvalidFiles {
+}
+
+event RemoveFiles {
+    --> CustomerDocument file
+}

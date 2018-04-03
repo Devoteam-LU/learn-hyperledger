@@ -47,7 +47,8 @@ function Forms(props) {
           }}
         >
           <MenuItem value="Original">Original</MenuItem>
-          <MenuItem value="Unoriginal">Unoriginal</MenuItem>
+          <MenuItem value="Certified">Certified</MenuItem>
+          <MenuItem value="SimpleCopy">SimpleCopy</MenuItem>
         </Select>
       </FormControl>
       <div className="cell" />

@@ -17,7 +17,7 @@ import {
 const initialState = fromJS({
   fileData: "",
   filename: "",
-  fileValidity: "Unoriginal",
+  fileValidity: "SimpleCopy",
   isValid: false,
   transactions: [],
   anchor: null,

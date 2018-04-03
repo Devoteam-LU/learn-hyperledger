@@ -1,0 +1,30 @@
+/** Sample queries for CustomerDocument Trading business network
+*/
+
+query selectFiles {
+  description: "Select all files"
+  statement:
+      SELECT org.acme.biznet.CustomerDocument
+}
+
+
+query selectCommoditiesByAgent {
+  description: "Select all commodities based on their authorizer"
+  statement:
+      SELECT org.acme.biznet.CustomerDocument
+          WHERE (authorizedBy == _$authorizedBy)
+}
+
+query selectFileById {
+  description: "Select commodities based on it's Id"
+  statement:
+      SELECT org.acme.biznet.CustomerDocument
+          WHERE (documentId == _$documentId)
+}
+
+query selectFileByApproval {
+  description: "Select commodities based on it's approved status"
+  statement:
+      SELECT org.acme.biznet.CustomerDocument
+          WHERE (approved == false)
+}

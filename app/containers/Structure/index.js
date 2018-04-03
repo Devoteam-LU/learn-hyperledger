@@ -27,7 +27,8 @@ import {
   updateFieldAction,
   submitFormRequestAction,
   toggleMenuAction,
-  changeUserAction
+  changeUserAction,
+  getTransactionsRequestAction
 } from "./actions";
 import reducer from "./reducer";
 import saga from "./saga";
@@ -39,6 +40,12 @@ import Layout from "components/Layout";
 
 export class Structure extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
+
+  componentWillMount(){
+    const { getTransactions } = this.props
+    getTransactions()
+  }
+
   render() {
     const { children, anchor, menuChildren, ...rest } = this.props;
     return (
@@ -85,7 +92,8 @@ function mapDispatchToProps(dispatch) {
     updateField: (field, value) => dispatch(updateFieldAction(field, value)),
     submitForm: () => dispatch(submitFormRequestAction()),
     toggleMenu: (anchor, menuChildren) =>
-      dispatch(toggleMenuAction(anchor, menuChildren))
+      dispatch(toggleMenuAction(anchor, menuChildren)),
+      getTransactions: ()=> dispatch(getTransactionsRequestAction())
   };
 }
 

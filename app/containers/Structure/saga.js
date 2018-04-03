@@ -1,6 +1,16 @@
-import { call, put, takeEvery, takeLatest, select } from "redux-saga/effects";
-import { submitForm } from "api/fileApi";
-import { getTransactions } from "api/transactionsApi";
+import {
+  call,
+  put,
+  takeEvery,
+  takeLatest,
+  select
+} from "redux-saga/effects";
+import {
+  submitForm
+} from "api/fileApi";
+import {
+  getTransactions
+} from "api/transactionsApi";
 
 import {
   submitFormResponseAction,
@@ -36,7 +46,18 @@ export function* submitFormSaga(action) {
 
 export function* getTransactionsSaga(action) {
   try {
-    const response = yield call(getTransactions);
+    let response = yield call(getTransactions);
+    response.sort(function (a, b) {
+      var timestampA = a.transactionTimestamp
+      var timestampB = b.transactionTimestamp
+      if (timestampA < timestampB) {
+        return 1;
+      }
+      if (timestampA > timestampB) {
+        return -1;
+      }
+      return 0;
+    });
     yield put(getTransactionsResponseAction(response));
   } catch (err) {
     yield put(getTransactionsResponseAction());
