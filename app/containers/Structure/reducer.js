@@ -11,7 +11,8 @@ import {
   UPDATE_FIELD_ACTION,
   SUBMIT_FORM_RESPONSE_ACTION,
   GET_TRANSACTIONS_RESPONSE_ACTION,
-  TOGGLE_MENU_ACTION
+  TOGGLE_MENU_ACTION,
+  CHANGE_TAB_ACTION
 } from "./constants";
 
 const initialState = fromJS({
@@ -21,7 +22,8 @@ const initialState = fromJS({
   isValid: false,
   transactions: [],
   anchor: null,
-  menuChildren: []
+  menuChildren: [],
+  currentTab: 0
 });
 
 function structureReducer(state = initialState, action) {
@@ -54,6 +56,9 @@ function structureReducer(state = initialState, action) {
           "menuChildren",
           action.menuChildren || initialState.get("menuChildren")
         );
+        case CHANGE_TAB_ACTION:
+        return state
+          .set("currentTab", action.tab || initialState.get("currentTab"))
     default:
       return state;
   }

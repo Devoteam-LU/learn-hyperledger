@@ -7,7 +7,7 @@ const CodePanelContainer = styled.pre`
   background-color: ${primaryText} !important;
   color: ${text};
   width: 100%;
-  height: calc(100vh - 176px);
+  height: calc(100vh - 240px);
   margin: 0 !important;
   border: none !important;
   border-radius: 4px !important;

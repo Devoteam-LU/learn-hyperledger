@@ -12,7 +12,8 @@ import {
   SUBMIT_FORM_RESPONSE_ACTION,
   GET_TRANSACTIONS_REQUEST_ACTION,
   GET_TRANSACTIONS_RESPONSE_ACTION,
-  TOGGLE_MENU_ACTION
+  TOGGLE_MENU_ACTION,
+  CHANGE_TAB_ACTION
 } from "./constants";
 
 import { CHANGE_USER_RESPONSE_ACTION } from "containers/App/constants";
@@ -76,5 +77,12 @@ export function changeUserAction(user) {
   return {
     type: CHANGE_USER_RESPONSE_ACTION,
     user
+  };
+}
+
+export function changeTabAction(tab) {
+  return {
+    type: CHANGE_TAB_ACTION,
+    tab
   };
 }

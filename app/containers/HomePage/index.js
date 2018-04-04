@@ -2,14 +2,19 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import messages from "./messages";
 
+import AppBar from 'material-ui/AppBar';
+import Tabs, { Tab } from 'material-ui/Tabs';
+import Typography from 'material-ui/Typography';
+
 import FileUpload from "components/FileUpload";
 import CodePanel from "components/CodePanel/Loadable";
+import VisualPanel from "components/VisualPanel/Loadable";
 import Forms from "components/Forms";
 
 export default class HomePage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { addFile, isValid, filename, transactions, ...rest } = this.props;
+    const { addFile, isValid, filename, transactions, changeTab, currentTab, ...rest } = this.props;
     return (
       <div className="grid-x grid-padding-x">
         <div className="auto cell grid-x">
@@ -28,7 +33,17 @@ export default class HomePage extends React.PureComponent {
           </div>
         </div>
         <div className="auto cell">
-          <CodePanel transactions={transactions} />
+        <AppBar position="static" color="default">
+          <Tabs
+            value={currentTab}
+            onChange={(e,value)=> changeTab(value)}
+          >
+            <Tab label="Code" />
+            <Tab label="Visual" />
+          </Tabs>
+        </AppBar>
+        {currentTab === 0 && <CodePanel transactions={transactions} />}
+        {currentTab === 1 && <VisualPanel transactions={transactions} />}
         </div>
       </div>
     );

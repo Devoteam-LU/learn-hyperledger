@@ -31,6 +31,11 @@ const selectMenuChildren = () =>
   createSelector(selectStructureDomain, substate =>
     substate.get("menuChildren")
   );
+  const selectCurrentTab = () =>
+  createSelector(selectStructureDomain, substate =>
+    substate.get("currentTab")
+  );
+  
 
 /**
  * Default selector used by Structure
@@ -49,5 +54,6 @@ export {
   selectIsValid,
   selectTransactions,
   selectAnchor,
-  selectMenuChildren
+  selectMenuChildren,
+  selectCurrentTab
 };

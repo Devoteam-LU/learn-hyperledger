@@ -21,3 +21,5 @@ export const GET_TRANSACTIONS_RESPONSE_ACTION =
   "app/Structure/GET_TRANSACTIONS_RESPONSE_ACTION";
 
 export const TOGGLE_MENU_ACTION = "app/Structure/TOGGLE_MENU_ACTION";
+
+export const CHANGE_TAB_ACTION = "app/Structure/CHANGE_TAB_ACTION";

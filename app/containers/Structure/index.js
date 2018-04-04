@@ -20,7 +20,8 @@ import makeSelectStructure, {
   selectIsValid,
   selectTransactions,
   selectAnchor,
-  selectMenuChildren
+  selectMenuChildren,
+  selectCurrentTab
 } from "./selectors";
 import {
   addFileAction,
@@ -28,7 +29,8 @@ import {
   submitFormRequestAction,
   toggleMenuAction,
   changeUserAction,
-  getTransactionsRequestAction
+  getTransactionsRequestAction,
+  changeTabAction
 } from "./actions";
 import reducer from "./reducer";
 import saga from "./saga";
@@ -81,7 +83,8 @@ const mapStateToProps = createStructuredSelector({
   isValid: selectIsValid(),
   transactions: selectTransactions(),
   anchor: selectAnchor(),
-  menuChildren: selectMenuChildren()
+  menuChildren: selectMenuChildren(),
+  currentTab: selectCurrentTab()
 });
 
 function mapDispatchToProps(dispatch) {
@@ -93,7 +96,8 @@ function mapDispatchToProps(dispatch) {
     submitForm: () => dispatch(submitFormRequestAction()),
     toggleMenu: (anchor, menuChildren) =>
       dispatch(toggleMenuAction(anchor, menuChildren)),
-      getTransactions: ()=> dispatch(getTransactionsRequestAction())
+    getTransactions: () => dispatch(getTransactionsRequestAction()),
+    changeTab: value => dispatch(changeTabAction(value))
   };
 }
 
