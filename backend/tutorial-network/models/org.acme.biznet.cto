@@ -4,8 +4,8 @@ asset CustomerDocument identified by documentId {
     o String documentId
     o String description
     o Validity validity
+    o String documentData
     o Boolean approved optional
-    o String documentData optional
     --> Operator validatedBy optional
     --> Agent authorizedBy optional
 }
@@ -46,7 +46,7 @@ transaction UploadFile {
     o String description
     o Validity validity
     o String documentData
-    --> Agent authorizedBy optional
+    --> Agent authorizedBy
 }
 
 event FileNotification {

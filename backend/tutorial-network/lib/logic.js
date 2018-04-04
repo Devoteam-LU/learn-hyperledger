@@ -4,12 +4,12 @@
  * @transaction
  */
 function validateFile(validate) {
-    validate.file.validatedBy = validate.validatedBy;
-    validate.file.approved = validate.approved;
-    return getAssetRegistry('org.acme.biznet.CustomerDocument')
-        .then(function (assetRegistry) {
-            return assetRegistry.update(validate.file);
-        });
+  validate.file.validatedBy = validate.validatedBy;
+  validate.file.approved = validate.approved;
+  return getAssetRegistry('org.acme.biznet.CustomerDocument')
+    .then(function (assetRegistry) {
+      return assetRegistry.update(validate.file);
+    });
 }
 
 /**
@@ -18,11 +18,11 @@ function validateFile(validate) {
  * @transaction
  */
 function certifyFile(certify) {
-    certify.file.authorizedBy = certify.authorizedBy;
-    return getAssetRegistry('org.acme.biznet.CustomerDocument')
-        .then(function (assetRegistry) {
-            return assetRegistry.update(certify.file);
-        });
+  certify.file.authorizedBy = certify.authorizedBy;
+  return getAssetRegistry('org.acme.biznet.CustomerDocument')
+    .then(function (assetRegistry) {
+      return assetRegistry.update(certify.file);
+    });
 }
 
 /**
@@ -32,18 +32,20 @@ function certifyFile(certify) {
  */
 function uploadFile(file) {
 
-    return getAssetRegistry('org.acme.biznet.CustomerDocument')
-        .then(function (AssetRegistry) {
-            // Get the factory for creating new asset instances.
-            var factory = getFactory();
-            // Create the Evidence.
-            var newFile = factory.newResource('org.acme.biznet', 'CustomerDocument',
-                file.documentId);
-            newFile.validity = file.validity
-            newFile.description = file.description
-            // Add the asset to the asset registry.
-            return AssetRegistry.add(newFile);
-        })
+  return getAssetRegistry('org.acme.biznet.CustomerDocument')
+    .then(function (AssetRegistry) {
+      // Get the factory for creating new asset instances.
+      var factory = getFactory();
+      // Create the Evidence.
+      var newFile = factory.newResource('org.acme.biznet', 'CustomerDocument',
+        file.documentId);
+      newFile.validity = file.validity
+      newFile.description = file.description
+      newFile.documentData = file.documentData
+      newFile.authorizedBy = file.authorizedBy
+      // Add the asset to the asset registry.
+      return AssetRegistry.add(newFile);
+    })
 
 }
 
@@ -53,27 +55,27 @@ function uploadFile(file) {
  * @transaction
  */
 function removeUnapprovedFiles(remove) {
-    return getAssetRegistry('org.acme.biznet.CustomerDocument')
-        .then(function (assetRegistry) {
-            return query('selectFileByApproval')
-                .then(function (results) {
+  return getAssetRegistry('org.acme.biznet.CustomerDocument')
+    .then(function (assetRegistry) {
+      return query('selectFileByApproval')
+        .then(function (results) {
 
-                    var promises = [];
+          var promises = [];
 
-                    for (var n = 0; n < results.length; n++) {
-                        var certify = results[n];
+          for (var n = 0; n < results.length; n++) {
+            var certify = results[n];
 
-                        // emit a notification that a trade was removed
-                        var removeFiles = getFactory().newEvent('org.acme.biznet', 'RemoveFiles');
-                        removeFiles.file = certify;
-                        emit(removeFiles);
+            // emit a notification that a trade was removed
+            var removeFiles = getFactory().newEvent('org.acme.biznet', 'RemoveFiles');
+            removeFiles.file = certify;
+            emit(removeFiles);
 
-                        // remove the commodity
-                        promises.push(assetRegistry.remove(certify));
-                    }
+            // remove the commodity
+            promises.push(assetRegistry.remove(certify));
+          }
 
-                    // we have to return all the promises
-                    return Promise.all(promises);
-                });
+          // we have to return all the promises
+          return Promise.all(promises);
         });
+    });
 }

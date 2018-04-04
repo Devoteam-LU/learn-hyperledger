@@ -9,8 +9,8 @@ export const submitForm = params =>
         documentId: params.filename,
         description: "A document",
         validity: params.fileValidity,
-        documentData: "lol",
-        // authorizedBy: "resource:org.acme.biznet.Agent#AGENT0"
+        documentData: params.fileData,
+        authorizedBy: "resource:org.acme.biznet.Agent#AGENT0"
       })
     }
   });

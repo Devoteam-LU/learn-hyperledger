@@ -1,3 +1,5 @@
+import sha256 from "crypto-js/sha256";
+
 import {
   call,
   put,
@@ -35,7 +37,7 @@ export function* submitFormSaga(action) {
     const response = yield call(submitForm, {
       filename,
       fileValidity,
-      fileData
+      fileData: sha256(fileData).toString()
     });
     yield put(submitFormResponseAction(response));
     yield put(getTransactionsRequestAction());
