@@ -3,10 +3,10 @@ import CodePanelContainer from "./CodePanelContainer";
 import Prism from "prismjs";
 
 function CodePanel(props) {
-  const { transactions } = props;
+  const { data } = props;
   const markup = {
     __html: Prism.highlight(
-      JSON.stringify(transactions, null, "    "),
+      JSON.stringify(data, null, "    "),
       Prism.languages.javascript
     )
   };

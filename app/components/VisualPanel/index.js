@@ -1,7 +1,7 @@
 import React from "react";
-import Block from "./Block";
 
 import VisualPanelContainer from "./VisualPanelContainer";
+import Block from "./Block";
 
 function VisualPanel(props) {
   const { transactions } = props;

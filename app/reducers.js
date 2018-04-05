@@ -5,7 +5,7 @@
 import { combineReducers } from "redux-immutable";
 import { fromJS } from "immutable";
 import { LOCATION_CHANGE } from "react-router-redux";
-import { CHANGE_USER_RESPONSE_ACTION } from "containers/App/constants";
+import { CHANGE_USER_ACTION } from "containers/App/constants";
 
 import languageProviderReducer from "containers/LanguageProvider/reducer";
 
@@ -18,12 +18,12 @@ import languageProviderReducer from "containers/LanguageProvider/reducer";
  */
 
 const userInitialState = fromJS({
-  user: "agent"
+  user: "resource:org.acme.biznet.Agent#AGENT0"
 });
 
 function userReducer(state = userInitialState, action) {
   switch (action.type) {
-    case CHANGE_USER_RESPONSE_ACTION:
+    case CHANGE_USER_ACTION:
       return state.set("user", action.user);
     default:
       return state;

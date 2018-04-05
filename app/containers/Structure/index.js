@@ -21,7 +21,10 @@ import makeSelectStructure, {
   selectTransactions,
   selectAnchor,
   selectMenuChildren,
-  selectCurrentTab
+  selectCurrentTab,
+  selectCurrentDocumentId,
+  selectApprovalStatus,
+  selectFiles
 } from "./selectors";
 import {
   addFileAction,
@@ -30,7 +33,8 @@ import {
   toggleMenuAction,
   changeUserAction,
   getTransactionsRequestAction,
-  changeTabAction
+  changeTabAction,
+  submitDecisionRequestAction
 } from "./actions";
 import reducer from "./reducer";
 import saga from "./saga";
@@ -43,13 +47,13 @@ import Layout from "components/Layout";
 export class Structure extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
 
-  componentWillMount(){
-    const { getTransactions } = this.props
-    getTransactions()
+  componentWillMount() {
+    const { getTransactions } = this.props;
+    getTransactions();
   }
 
   render() {
-    const { children, anchor, menuChildren, ...rest } = this.props;
+    const { children, anchor, menuChildren, changeUser, ...rest } = this.props;
     return (
       <Layout {...rest}>
         <Menu
@@ -59,8 +63,14 @@ export class Structure extends React.Component {
           onClose={() => rest.toggleMenu()}
         >
           {menuChildren.map(child => (
-            <MenuItem key={child.label} onClick={child.onClick}>
-              {child.label}
+            <MenuItem
+              key={child.user}
+              onClick={() => {
+                changeUser(child.user);
+                rest.toggleMenu();
+              }}
+            >
+              Switch to user {child.label}
             </MenuItem>
           ))}
         </Menu>
@@ -84,7 +94,11 @@ const mapStateToProps = createStructuredSelector({
   transactions: selectTransactions(),
   anchor: selectAnchor(),
   menuChildren: selectMenuChildren(),
-  currentTab: selectCurrentTab()
+  currentTab: selectCurrentTab(),
+  currentDocumentId: selectCurrentDocumentId(),
+  approvalStatus: selectApprovalStatus(),
+
+  files: selectFiles()
 });
 
 function mapDispatchToProps(dispatch) {
@@ -97,7 +111,8 @@ function mapDispatchToProps(dispatch) {
     toggleMenu: (anchor, menuChildren) =>
       dispatch(toggleMenuAction(anchor, menuChildren)),
     getTransactions: () => dispatch(getTransactionsRequestAction()),
-    changeTab: value => dispatch(changeTabAction(value))
+    changeTab: value => dispatch(changeTabAction(value)),
+    submitDecision: () => dispatch(submitDecisionRequestAction())
   };
 }
 

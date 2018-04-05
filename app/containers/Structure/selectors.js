@@ -31,11 +31,20 @@ const selectMenuChildren = () =>
   createSelector(selectStructureDomain, substate =>
     substate.get("menuChildren")
   );
-  const selectCurrentTab = () =>
+const selectCurrentTab = () =>
+  createSelector(selectStructureDomain, substate => substate.get("currentTab"));
+
+const selectCurrentDocumentId = () =>
   createSelector(selectStructureDomain, substate =>
-    substate.get("currentTab")
+    substate.get("currentDocumentId")
   );
-  
+const selectApprovalStatus = () =>
+  createSelector(selectStructureDomain, substate =>
+    substate.get("approvalStatus")
+  );
+
+const selectFiles = () =>
+  createSelector(selectStructureDomain, substate => substate.get("files"));
 
 /**
  * Default selector used by Structure
@@ -55,5 +64,8 @@ export {
   selectTransactions,
   selectAnchor,
   selectMenuChildren,
-  selectCurrentTab
+  selectCurrentTab,
+  selectCurrentDocumentId,
+  selectApprovalStatus,
+  selectFiles
 };

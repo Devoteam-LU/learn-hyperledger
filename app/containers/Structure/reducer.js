@@ -12,7 +12,8 @@ import {
   SUBMIT_FORM_RESPONSE_ACTION,
   GET_TRANSACTIONS_RESPONSE_ACTION,
   TOGGLE_MENU_ACTION,
-  CHANGE_TAB_ACTION
+  CHANGE_TAB_ACTION,
+  GET_FILES_RESPONSE_ACTION
 } from "./constants";
 
 const initialState = fromJS({
@@ -23,7 +24,12 @@ const initialState = fromJS({
   transactions: [],
   anchor: null,
   menuChildren: [],
-  currentTab: 0
+  currentTab: 0,
+
+  currentDocumentId: 0,
+  approvalStatus: 0,
+
+  files: []
 });
 
 function structureReducer(state = initialState, action) {
@@ -56,9 +62,13 @@ function structureReducer(state = initialState, action) {
           "menuChildren",
           action.menuChildren || initialState.get("menuChildren")
         );
-        case CHANGE_TAB_ACTION:
-        return state
-          .set("currentTab", action.tab || initialState.get("currentTab"))
+    case CHANGE_TAB_ACTION:
+      return state.set(
+        "currentTab",
+        action.tab || initialState.get("currentTab")
+      );
+    case GET_FILES_RESPONSE_ACTION:
+      return state.set("files", action.files || initialState.get("files"));
     default:
       return state;
   }

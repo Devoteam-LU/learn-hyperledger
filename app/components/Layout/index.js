@@ -42,13 +42,19 @@ const Layout = props => {
             <ChangeUser
               onClick={e =>
                 toggleMenu(e.currentTarget, [
-                  { label: "Agent", onClick: () => alert("lol") },
-                  { label: "Operator", onClick: () => alert("lol") }
+                  {
+                    label: "Agent",
+                    user: "resource:org.acme.biznet.Agent#AGENT0"
+                  },
+                  {
+                    label: "Operator",
+                    user: "resource:org.acme.biznet.Operator#OPER0"
+                  }
                 ])
               }
             >
               <strong>
-                {user ? user.charAt(0).toUpperCase() + user.slice(1) : null}
+                {user && user.indexOf("Agent") > -1 ? "Agent" : "Operator"}
               </strong>
             </ChangeUser>
           </Typography>

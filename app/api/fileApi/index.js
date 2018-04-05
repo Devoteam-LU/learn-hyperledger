@@ -10,7 +10,15 @@ export const submitForm = params =>
         description: "A document",
         validity: params.fileValidity,
         documentData: params.fileData,
-        authorizedBy: "resource:org.acme.biznet.Agent#AGENT0"
+        authorizedBy: params.user
       })
+    }
+  });
+
+export const getFiles = params =>
+  api({
+    url: "queries/selectFiles",
+    request: {
+      method: "GET"
     }
   });
