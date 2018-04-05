@@ -46,6 +46,11 @@ const selectApprovalStatus = () =>
 const selectFiles = () =>
   createSelector(selectStructureDomain, substate => substate.get("files"));
 
+const selectIsLoadingActive = () =>
+  createSelector(selectStructureDomain, substate =>
+    substate.get("isLoadingActive")
+  );
+
 /**
  * Default selector used by Structure
  */
@@ -67,5 +72,6 @@ export {
   selectCurrentTab,
   selectCurrentDocumentId,
   selectApprovalStatus,
-  selectFiles
+  selectFiles,
+  selectIsLoadingActive
 };

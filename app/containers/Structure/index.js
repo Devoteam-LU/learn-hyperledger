@@ -24,7 +24,8 @@ import makeSelectStructure, {
   selectCurrentTab,
   selectCurrentDocumentId,
   selectApprovalStatus,
-  selectFiles
+  selectFiles,
+  selectIsLoadingActive
 } from "./selectors";
 import {
   addFileAction,
@@ -43,6 +44,7 @@ import messages from "./messages";
 import Menu, { MenuItem } from "material-ui/Menu";
 
 import Layout from "components/Layout";
+import Loading from "components/Loading";
 
 export class Structure extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -53,9 +55,18 @@ export class Structure extends React.Component {
   }
 
   render() {
-    const { children, anchor, menuChildren, changeUser, ...rest } = this.props;
+    const {
+      children,
+      anchor,
+      menuChildren,
+      changeUser,
+      isLoadingActive,
+      ...rest
+    } = this.props;
+
     return (
       <Layout {...rest}>
+        <Loading active={isLoadingActive} />
         <Menu
           id="mui-menu"
           anchorEl={anchor}
@@ -98,7 +109,9 @@ const mapStateToProps = createStructuredSelector({
   currentDocumentId: selectCurrentDocumentId(),
   approvalStatus: selectApprovalStatus(),
 
-  files: selectFiles()
+  files: selectFiles(),
+
+  isLoadingActive: selectIsLoadingActive()
 });
 
 function mapDispatchToProps(dispatch) {

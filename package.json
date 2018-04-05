@@ -1,6 +1,6 @@
 {
   "name": "learn-hyperledger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A learning aid using Hyperledger & React",
   "repository": {
     "type": "git",

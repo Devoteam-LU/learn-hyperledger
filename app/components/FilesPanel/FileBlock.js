@@ -23,7 +23,10 @@ function FileBlock(props) {
         <Typography component="h3" color="textSecondary">
           <strong>{validity}</strong>
         </Typography>
-        <Typography component="h3" color="textSecondary">
+        <Typography
+          component={approved === true || approved === false ? "h3" : null}
+          color="textSecondary"
+        >
           {`Authorized by ${authorizedBy}`}
         </Typography>
         {approved === true || approved === false ? (

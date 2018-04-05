@@ -13,7 +13,8 @@ import {
   GET_TRANSACTIONS_RESPONSE_ACTION,
   TOGGLE_MENU_ACTION,
   CHANGE_TAB_ACTION,
-  GET_FILES_RESPONSE_ACTION
+  GET_FILES_RESPONSE_ACTION,
+  TOGGLE_LOADING_ACTION
 } from "./constants";
 
 const initialState = fromJS({
@@ -29,7 +30,9 @@ const initialState = fromJS({
   currentDocumentId: 0,
   approvalStatus: 0,
 
-  files: []
+  files: [],
+
+  isLoadingActive: false
 });
 
 function structureReducer(state = initialState, action) {
@@ -69,6 +72,8 @@ function structureReducer(state = initialState, action) {
       );
     case GET_FILES_RESPONSE_ACTION:
       return state.set("files", action.files || initialState.get("files"));
+    case TOGGLE_LOADING_ACTION:
+      return state.set("isLoadingActive", !state.get("isLoadingActive"));
     default:
       return state;
   }

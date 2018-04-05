@@ -12,7 +12,8 @@ import {
   getFilesRequestAction,
   getFilesResponseAction,
   submitDecisionRequestAction,
-  submitDecisionResponseAction
+  submitDecisionResponseAction,
+  toggleLoadingAction
 } from "./actions";
 import {
   SUBMIT_FORM_REQUEST_ACTION,
@@ -33,6 +34,7 @@ import yellow from "material-ui/colors/yellow";
 
 export function* submitFormSaga(action) {
   try {
+    yield put(toggleLoadingAction());
     const filename = yield select(selectFilename());
     const fileValidity = yield select(selectFileValidity());
     const fileData = yield select(selectFileData());
@@ -46,13 +48,16 @@ export function* submitFormSaga(action) {
     });
     yield put(submitFormResponseAction(response));
     yield put(getTransactionsRequestAction());
+    yield put(toggleLoadingAction());
   } catch (err) {
     yield put(submitFormResponseAction());
+    yield put(toggleLoadingAction());
   }
 }
 
 export function* getTransactionsSaga(action) {
   try {
+    yield put(toggleLoadingAction());
     let response = yield call(getTransactions);
     response.sort(function(a, b) {
       var timestampA = a.transactionTimestamp;
@@ -67,6 +72,7 @@ export function* getTransactionsSaga(action) {
     });
     yield put(getTransactionsResponseAction(response));
     yield put(getFilesRequestAction());
+    yield put(toggleLoadingAction());
   } catch (err) {
     yield put(getTransactionsResponseAction());
   }
@@ -94,7 +100,8 @@ export function* getFilesSaga(action) {
 
 export function* submitDecisionSaga(action) {
   try {
-    const files = yield select(selectFiles())
+    yield put(toggleLoadingAction());
+    const files = yield select(selectFiles());
     const documentId = yield select(selectCurrentDocumentId());
     const isApproved = yield select(selectApprovalStatus());
     const user = yield select(selectUser());
@@ -106,8 +113,10 @@ export function* submitDecisionSaga(action) {
     });
     yield put(submitDecisionResponseAction(response));
     yield put(getTransactionsRequestAction());
+    yield put(toggleLoadingAction());
   } catch (err) {
     yield put(submitDecisionResponseAction());
+    yield put(toggleLoadingAction());
   }
 }
 

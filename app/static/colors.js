@@ -11,6 +11,8 @@ export const accentText = "#BDBDBD";
 
 export const backgroundColor = "#fafafa";
 
+export const fadedBlack = "rgba(0, 0, 0, 0.4)";
+
 export default {
   primaryColor,
   primaryColorDark,
@@ -20,5 +22,6 @@ export default {
   primaryText,
   secondaryText,
   accentText,
-  backgroundColor
+  backgroundColor,
+  fadedBlack
 };

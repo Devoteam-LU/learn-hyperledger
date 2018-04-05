@@ -17,7 +17,8 @@ import {
   GET_FILES_REQUEST_ACTION,
   GET_FILES_RESPONSE_ACTION,
   SUBMIT_DECISION_REQUEST_ACTION,
-  SUBMIT_DECISION_RESPONSE_ACTION
+  SUBMIT_DECISION_RESPONSE_ACTION,
+  TOGGLE_LOADING_ACTION
 } from "./constants";
 
 import { CHANGE_USER_ACTION } from "containers/App/constants";
@@ -111,5 +112,11 @@ export function submitDecisionRequestAction() {
 export function submitDecisionResponseAction() {
   return {
     type: SUBMIT_DECISION_RESPONSE_ACTION
+  };
+}
+
+export function toggleLoadingAction() {
+  return {
+    type: TOGGLE_LOADING_ACTION
   };
 }
