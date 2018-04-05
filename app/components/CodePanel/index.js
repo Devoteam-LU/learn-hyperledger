@@ -6,8 +6,8 @@ function CodePanel(props) {
   const { transactions } = props;
   const markup = {
     __html: Prism.highlight(
-      JSON.stringify(transactions, null, "\t"),
-      Prism.languages.javascript,
+      JSON.stringify(transactions, null, "    "),
+      Prism.languages.javascript
     )
   };
 

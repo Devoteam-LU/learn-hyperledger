@@ -37,6 +37,7 @@ export default class HomePage extends React.PureComponent {
           <Tabs
             value={currentTab}
             onChange={(e,value)=> changeTab(value)}
+            indicatorColor="primary"
           >
             <Tab label="Code" />
             <Tab label="Visual" />

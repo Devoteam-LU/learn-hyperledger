@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { accentColor } from "static/colors";
 
-const ChangeUser = styled.div`
+const ChangeUser = styled.span`
   display: flex;
   align-items: center;
   padding: 0 4rem;

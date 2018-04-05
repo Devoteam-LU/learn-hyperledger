@@ -1,17 +1,17 @@
-import React from 'react';
-import Block from './Block';
+import React from "react";
+import Block from "./Block";
+
+import VisualPanelContainer from "./VisualPanelContainer";
 
 function VisualPanel(props) {
-  const {transactions} = props
+  const { transactions } = props;
   return (
-    <div>
-      {transactions.map((blockData, i) => <Block key={i} {...blockData}/>)}
-    </div>
+    <VisualPanelContainer>
+      {transactions.map((blockData, i) => <Block key={i} {...blockData} />)}
+    </VisualPanelContainer>
   );
 }
 
-VisualPanel.propTypes = {
-
-};
+VisualPanel.propTypes = {};
 
 export default VisualPanel;

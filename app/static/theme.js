@@ -18,7 +18,7 @@ const DevoteamTheme = createMuiTheme({
     primary: {
       light: primaryColorLight,
       main: primaryColor,
-      dark: primaryColorDark,
+      dark: accentColor,
       contrastText: text
     },
     secondary: {

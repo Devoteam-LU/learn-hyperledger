@@ -61,7 +61,7 @@ const Layout = props => {
       </CardContainer>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="title" color="inherit" flex={true} />
+          <Typography variant="title" color="inherit" flex />
           <Typography color="inherit">
             <a href="https://lu.devoteam.com" target="_blank">
               <strong>© Devoteam </strong>2018
