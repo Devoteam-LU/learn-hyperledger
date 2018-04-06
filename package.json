@@ -1,7 +1,7 @@
 {
   "name": "learn-hyperledger",
-  "version": "0.0.4",
-  "description": "A learning aid using Hyperledger & React",
+  "version": "0.0.5",
+  "description": "Experience the power of Hyperledger through React",
   "repository": {
     "type": "git",
     "url": "git://github.com/organizations/Devoteam-LU/learn-hyperledger.git"
