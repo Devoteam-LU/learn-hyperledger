@@ -227,7 +227,7 @@
     "ip": "1.1.5",
     "lodash": "4.17.4",
     "material-ui": "^1.0.0-beta.39",
-    "minimist": "1.2.0",
+    "minimist": "1.2.2",
     "moment": "^2.22.0",
     "npm": "^6.13.4",
     "prismjs": "^1.13.0",
