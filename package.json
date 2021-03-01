@@ -230,7 +230,7 @@
     "minimist": "1.2.3",
     "moment": "^2.22.0",
     "npm": "^6.13.4",
-    "prismjs": "^1.13.0",
+    "prismjs": "^1.23.0",
     "prop-types": "15.5.10",
     "react": "15.6.1",
     "react-dom": "15.6.1",
